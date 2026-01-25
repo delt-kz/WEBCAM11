@@ -1,8 +1,9 @@
-// Database connection module
+// In-memory database - no connection needed
+// Data is stored in JavaScript memory
 
 async function connectToMongo() {
-  // Placeholder for database connection
-  console.log("Connecting to database...");
+  // Fake connection - just log that we're using in-memory storage
+  console.log("Using in-memory database (no MongoDB connection needed)");
   return Promise.resolve();
 }
 
