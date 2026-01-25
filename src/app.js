@@ -23,6 +23,13 @@ function createApp() {
     });
   });
 
+  app.get("/version", (req, res) => {
+    return res.json({
+      version: "1.1",
+      updatedAt: "2026-01-18",
+    });
+  });
+
   app.use("/api/items", itemsRouter);
 
   app.use(notFoundHandler);
