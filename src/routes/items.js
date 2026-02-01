@@ -1,5 +1,6 @@
 const express = require("express");
 const { Item, isValidId } = require("../models/Item");
+const { apiKeyAuth } = require("../middleware/auth");
 
 const itemsRouter = express.Router();
 
@@ -30,7 +31,7 @@ itemsRouter.get("/:id", async (req, res, next) => {
   }
 });
 
-itemsRouter.post("/", async (req, res, next) => {
+itemsRouter.post("/", apiKeyAuth, async (req, res, next) => {
   try {
     const { name, description } = req.body || {};
     if (!name || typeof name !== "string" || !name.trim()) {
@@ -48,7 +49,7 @@ itemsRouter.post("/", async (req, res, next) => {
   }
 });
 
-itemsRouter.put("/:id", async (req, res, next) => {
+itemsRouter.put("/:id", apiKeyAuth, async (req, res, next) => {
   try {
     const { id } = req.params;
     if (!isValidId(id)) {
@@ -83,7 +84,7 @@ itemsRouter.put("/:id", async (req, res, next) => {
   }
 });
 
-itemsRouter.patch("/:id", async (req, res, next) => {
+itemsRouter.patch("/:id", apiKeyAuth, async (req, res, next) => {
   try {
     const { id } = req.params;
     if (!isValidId(id)) {
@@ -125,7 +126,7 @@ itemsRouter.patch("/:id", async (req, res, next) => {
   }
 });
 
-itemsRouter.delete("/:id", async (req, res, next) => {
+itemsRouter.delete("/:id", apiKeyAuth, async (req, res, next) => {
   try {
     const { id } = req.params;
     if (!isValidId(id)) {
